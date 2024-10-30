@@ -1,24 +1,21 @@
 const CartReducer = (state, action) =>{
     switch (action.type) {
-        case "ADD_TO_CART":{
-            let{id, color, amount, product} = action.payload;
-
-            let cartProduct;
-
-            cartProduct = {
-                id: id+color,
+        case "ADD_TO_CART": {
+            const { id, color, amount, product } = action.payload;
+            const cartProduct = {
+                id: id + color,
                 name: product.name,
                 color,
                 image: product.image[0].url,
                 amount,
                 price: product.price,
                 stock: product.stock,
-            }
-
-            return{
+            };
+        
+            return {
                 ...state,
-                cart: [...state.cart,cartProduct],
-            }
+                cart: [...(state.cart || []), cartProduct], // Fallback to empty array if cart is null
+            };
         }
 
         case "DELETE_ONE":{
