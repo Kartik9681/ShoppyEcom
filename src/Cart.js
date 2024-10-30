@@ -17,9 +17,13 @@ const Cart = () => {
         </div>
         <hr />
         <div className="cart-item">
-          {cart.map((curElem) => {
-            return <CartItem key={curElem.id} {...curElem} />;
-          })}
+          {cart && cart.length > 0 ? (
+            cart.map((curElem) => (
+              <CartItem key={curElem.id} {...curElem} />
+            ))
+          ) : (
+            <p>Your cart is empty</p>
+          )}
         </div>
         </div>
   </Wrapper>
